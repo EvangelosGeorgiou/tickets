@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Attachment extends Model
+class TicketAttachment extends Model
 {
     use HasFactory,
         HasTimestamps,
@@ -34,6 +34,6 @@ class Attachment extends Model
 
     public function response(): BelongsTo
     {
-        return $this->belongsTo(Response::class, 'id', 'response_id');
+        return $this->belongsTo(TicketResponse::class, 'id', 'response_id');
     }
 }

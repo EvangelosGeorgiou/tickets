@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string message
  * @property ResponseMessageType type
  */
-class Response extends Model
+class TicketResponse extends Model
 {
     use HasFactory,
         HasTimestamps,
@@ -44,6 +44,6 @@ class Response extends Model
 
     public function attachments(): HasMany
     {
-        return $this->hasMany(Attachment::class, 'response_id', 'id');
+        return $this->hasMany(TicketAttachment::class, 'response_id', 'id');
     }
 }

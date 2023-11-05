@@ -3,7 +3,7 @@
 namespace EvanGeo\Ticket\Concerns;
 
 use Closure;
-use EvanGeo\Ticket\Repository\AttachmentRepository;
+use EvanGeo\Ticket\Repository\TicketAttachmentRepository;
 
 trait HasAttachments
 {
@@ -15,7 +15,7 @@ trait HasAttachments
         $this->response->attachments()->createMany($documents);
 
         if (is_callable($callback)) {
-            $callback(new AttachmentRepository());
+            $callback(new TicketAttachmentRepository());
         }
 
         return $this;

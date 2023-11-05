@@ -2,20 +2,20 @@
 
 namespace EvanGeo\Ticket\Concerns;
 
-use EvanGeo\Ticket\Repository\CategoryRepository;
-use EvanGeo\Ticket\Repository\InternalGroupRepository;
-use EvanGeo\Ticket\Repository\ResponseRepository;
+use EvanGeo\Ticket\Repository\TicketCategoryRepository;
+use EvanGeo\Ticket\Repository\TicketInternalGroupRepository;
+use EvanGeo\Ticket\Repository\TicketResponseRepository;
 use Illuminate\Support\Collection;
 
 trait TicketRelations
 {
-    public function getCategory(): ?CategoryRepository
+    public function getCategory(): ?TicketCategoryRepository
     {
         if (is_null($this->category_id)) {
             return null;
         }
 
-        return new CategoryRepository($this->category);
+        return new TicketCategoryRepository($this->category);
     }
 
     public function getResponses(): ?Collection
@@ -26,16 +26,16 @@ trait TicketRelations
             return null;
         }
 
-        return $responses->map(fn ($r) => new ResponseRepository($this->ticket, $r));
+        return $responses->map(fn ($r) => new TicketResponseRepository($this->ticket, $r));
     }
 
-    public function getInternalGroup(): ?InternalGroupRepository
+    public function getInternalGroup(): ?TicketInternalGroupRepository
     {
         if (is_null($this->ticket->internal_group_id)) {
             return null;
         }
 
-        return new InternalGroupRepository($this->ticket->internal_group);
+        return new TicketInternalGroupRepository($this->ticket->internal_group);
     }
 
     public function loadResponses(): self

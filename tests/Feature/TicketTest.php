@@ -5,13 +5,13 @@ namespace EvanGeo\Ticket\Tests\Feature;
 use EvanGeo\Ticket\Enums\Priority;
 use EvanGeo\Ticket\Enums\ResponseMessageType;
 use EvanGeo\Ticket\Enums\Status;
-use EvanGeo\Ticket\Models\Attachment;
-use EvanGeo\Ticket\Models\Category;
-use EvanGeo\Ticket\Models\InternalGroup;
+use EvanGeo\Ticket\Models\TicketAttachment;
+use EvanGeo\Ticket\Models\TicketCategory;
+use EvanGeo\Ticket\Models\TicketInternalGroup;
 use EvanGeo\Ticket\Models\Tags;
 use EvanGeo\Ticket\Models\Ticket;
 use EvanGeo\Ticket\Models\TicketTags;
-use EvanGeo\Ticket\Repository\AttachmentRepository;
+use EvanGeo\Ticket\Repository\TicketAttachmentRepository;
 use EvanGeo\Ticket\Tests\TestCase;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\Testing\File;
@@ -77,11 +77,11 @@ class TicketTest extends TestCase
             ],
         ];
 
-        $response->attachDocuments($attachments, function (AttachmentRepository $attachment) use ($uploads) {
+        $response->attachDocuments($attachments, function (TicketAttachmentRepository $attachment) use ($uploads) {
             $attachment->upload($uploads, $this->faker->filePath());
         });
 
-        $this->assertDatabaseCount(Attachment::class, 2);
+        $this->assertDatabaseCount(TicketAttachment::class, 2);
 
     }
 
@@ -123,7 +123,7 @@ class TicketTest extends TestCase
 
         $this->assertNull($ticket->internal_group_id);
 
-        $internalGroup = InternalGroup::factory()->create();
+        $internalGroup = TicketInternalGroup::factory()->create();
 
         $ticket->setInternalGroup($internalGroup->getKey());
 
@@ -141,7 +141,7 @@ class TicketTest extends TestCase
      */
     public function test_ticket_category()
     {
-        $category = Category::factory()->create();
+        $category = TicketCategory::factory()->create();
 
         $ticket = \ticket()->createAsUser(1, [
             'subject' => $this->faker->sentence(3),

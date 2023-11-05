@@ -2,7 +2,7 @@
 
 namespace EvanGeo\Ticket\Repository;
 
-use EvanGeo\Ticket\Models\InternalGroup;
+use EvanGeo\Ticket\Models\TicketInternalGroup;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,11 +12,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property string entity
  * @property bool enabled
  */
-class InternalGroupRepository implements Arrayable
+class TicketInternalGroupRepository implements Arrayable
 {
-    private InternalGroup|Model $group;
+    private TicketInternalGroup|Model $group;
 
-    public function __construct(InternalGroup|Model $group)
+    public function __construct(TicketInternalGroup|Model $group)
     {
         $this->group = $group;
     }
@@ -26,7 +26,7 @@ class InternalGroupRepository implements Arrayable
         return $this->group->{$name};
     }
 
-    public function update(array $data): InternalGroupRepository
+    public function update(array $data): TicketInternalGroupRepository
     {
         $this->group->update($data);
 
@@ -35,7 +35,7 @@ class InternalGroupRepository implements Arrayable
         return $this;
     }
 
-    public function toggleEnabled(): InternalGroupRepository
+    public function toggleEnabled(): TicketInternalGroupRepository
     {
         $this->group->update(['enabled' => ! $this->group->enabled]);
 

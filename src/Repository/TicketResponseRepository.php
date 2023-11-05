@@ -4,8 +4,8 @@ namespace EvanGeo\Ticket\Repository;
 
 use EvanGeo\Ticket\Concerns\HasAttachments;
 use EvanGeo\Ticket\Enums\ResponseMessageType;
-use EvanGeo\Ticket\Models\TicketResponse;
 use EvanGeo\Ticket\Models\Ticket;
+use EvanGeo\Ticket\Models\TicketResponse;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Model;
 

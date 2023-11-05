@@ -7,7 +7,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-class AttachmentRepository
+class TicketAttachmentRepository
 {
     /**
      * @param  Collection<File>|File[]  $files
@@ -15,7 +15,7 @@ class AttachmentRepository
     public function upload(array|Collection $files, string $path): self
     {
         $files = is_array($files) ? collect($files) : $files;
-        $path = Str::endsWith('/', $path) ?: "$path/";
+        $path = Str::endsWith('/', $path) ? $path : "$path/";
 
         $files->whereInstanceOf(File::class)
             ->each(fn (File $file) => Storage::disk(config('ticket.attachments.upload_disk'))

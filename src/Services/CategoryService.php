@@ -2,17 +2,17 @@
 
 namespace EvanGeo\Ticket\Services;
 
-use EvanGeo\Ticket\Models\Category;
-use EvanGeo\Ticket\Repository\CategoryRepository;
+use EvanGeo\Ticket\Models\TicketCategory;
+use EvanGeo\Ticket\Repository\TicketCategoryRepository;
 use Illuminate\Support\Collection;
 
 class CategoryService
 {
-    public function create(array $data): CategoryRepository
+    public function create(array $data): TicketCategoryRepository
     {
-        $category = Category::query()->create($data);
+        $category = TicketCategory::query()->create($data);
 
-        return new CategoryRepository($category);
+        return new TicketCategoryRepository($category);
     }
 
     /**
@@ -20,26 +20,26 @@ class CategoryService
      */
     public function insert(array $data): self
     {
-        Category::query()->insert($data);
+        TicketCategory::query()->insert($data);
 
         return $this;
     }
 
-    public function getById($id): CategoryRepository
+    public function getById($id): TicketCategoryRepository
     {
-        $category = Category::query()->findOrFail($id);
+        $category = TicketCategory::query()->findOrFail($id);
 
-        return new CategoryRepository($category);
+        return new TicketCategoryRepository($category);
     }
 
     /**
-     * @return Collection<Category>
+     * @return Collection<TicketCategory>
      */
     public function getAll(): Collection
     {
-        $categories = Category::all();
+        $categories = TicketCategory::all();
 
-        return $categories->map(fn ($c) => new Category((array) $c));
+        return $categories->map(fn ($c) => new TicketCategory((array) $c));
     }
 
     public function delete($id): self
@@ -51,7 +51,7 @@ class CategoryService
 
     public function bulkDelete(array $ids): static
     {
-        Category::query()->whereIn('id', $ids)->delete();
+        TicketCategory::query()->whereIn('id', $ids)->delete();
 
         return $this;
     }

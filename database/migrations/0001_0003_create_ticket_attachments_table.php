@@ -13,7 +13,6 @@ class CreateTicketAttachmentsTable extends Migration
     {
         Schema::create(config('ticket.attachments.table', 'ticket_attachments'), function (Blueprint $table) {
             $table->id();
-            //            $table->unsignedInteger('ticket_id')->index();
             $table->unsignedInteger('response_id')->index();
             $table->string('name');
             $table->string('mime');

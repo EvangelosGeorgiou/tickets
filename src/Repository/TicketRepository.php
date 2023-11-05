@@ -5,12 +5,11 @@ namespace EvanGeo\Ticket\Repository;
 use EvanGeo\Ticket\Concerns\HasResponses;
 use EvanGeo\Ticket\Concerns\InteractWithTicket;
 use EvanGeo\Ticket\Concerns\TicketRelations;
+use EvanGeo\Ticket\Models\Ticket;
 use EvanGeo\Ticket\Models\TicketCategory;
 use EvanGeo\Ticket\Models\TicketInternalGroup;
 use EvanGeo\Ticket\Models\TicketResponse;
-use EvanGeo\Ticket\Models\Ticket;
 use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Support\Collection;
 
 /**
  * @property int id

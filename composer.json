@@ -6,7 +6,7 @@
         "laravel",
         "tickets"
     ],
-    "homepage": "https://github.com/epls-tickets/tickets",
+    "homepage": "https://github.com/EvangelosGeorgiou/tickets",
     "license": "MIT",
     "require": {
         "php": "^8.1|^8.2",

@@ -15,3 +15,4 @@ parameters:
     ignoreErrors:
     		- '#^Access to an undefined property#'
     		- '#^PHPDoc tag @property has invalid value#'
+    		- '#^Call to an undefined method#'

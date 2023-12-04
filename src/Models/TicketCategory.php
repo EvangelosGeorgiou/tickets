@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string entity
  * @property bool enabled
  */
-class Category extends Model
+class TicketCategory extends Model
 {
     use HasFactory;
 

@@ -4,7 +4,7 @@ namespace EvanGeo\Ticket\Repository;
 
 use EvanGeo\Ticket\Models\Ticket;
 
-class Repository implements Contracts\Repository
+abstract class Repository implements Contracts\Repository
 {
     protected Ticket $ticket;
 

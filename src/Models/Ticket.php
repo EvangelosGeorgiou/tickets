@@ -28,9 +28,9 @@ use Illuminate\Support\Str;
  * @property int closed_by
  * @property int created_by
  * @property int updated_by
- * @property Collection<Response> $responses
- * @property Category $category
- * @property InternalGroup $internal_group
+ * @property Collection<TicketResponse> $responses
+ * @property TicketCategory $category
+ * @property TicketInternalGroup $internal_group
  */
 class Ticket extends Model
 {
@@ -65,7 +65,7 @@ class Ticket extends Model
 
     public function responses(): HasMany
     {
-        return $this->hasMany(Response::class, 'ticket_id', 'id');
+        return $this->hasMany(TicketResponse::class, 'ticket_id', 'id');
     }
 
     public function tags(): BelongsToMany
@@ -78,11 +78,11 @@ class Ticket extends Model
 
     public function category(): HasOne
     {
-        return $this->hasOne(Category::class, 'id', 'category_id');
+        return $this->hasOne(TicketCategory::class, 'id', 'category_id');
     }
 
     public function internal_group(): HasOne
     {
-        return $this->hasOne(InternalGroup::class, 'id', 'internal_group_id');
+        return $this->hasOne(TicketInternalGroup::class, 'id', 'internal_group_id');
     }
 }

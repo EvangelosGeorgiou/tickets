@@ -7,14 +7,15 @@
 
 ## Introduction
 
-__Laravel Ticket__ package, is a Backend API to handle your ticket system, with an easy way.
+The Laravel Ticket Support Backend Package is a specialized solution for managing customer support requests and streamlining the back-end processes of your support system. This package is designed to empower your support team by providing the necessary tools for efficient ticket handling and resolution.
+
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require evangeo/tickets
+composer require evangeo/support-tickets
 ```
 
 You can publish and run the migrations with:
@@ -183,7 +184,7 @@ $ticket = ticket()
 - A real Scenario
 ```php
 $ticket = ticket()
-            ->createAsUser(1, $ticketData)
+            ->createAsUser($userId, $ticketData)
             ->replyAsUser($userId, $responseData)
             ->markAsInternalMessage()
             ->attachDocuments($attachments, function (AttachmentRepository $repository) use ($uploads){

@@ -2,12 +2,12 @@
 
 namespace EvanGeo\Ticket\Database\Factories;
 
-use EvanGeo\Ticket\Models\InternalGroup;
+use EvanGeo\Ticket\Models\TicketInternalGroup;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class InternalGroupFactory extends Factory
 {
-    protected $model = InternalGroup::class;
+    protected $model = TicketInternalGroup::class;
 
     public function definition(): array
     {

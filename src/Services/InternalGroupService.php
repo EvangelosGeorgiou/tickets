@@ -2,17 +2,17 @@
 
 namespace EvanGeo\Ticket\Services;
 
-use EvanGeo\Ticket\Models\InternalGroup;
-use EvanGeo\Ticket\Repository\InternalGroupRepository;
+use EvanGeo\Ticket\Models\TicketInternalGroup;
+use EvanGeo\Ticket\Repository\TicketInternalGroupRepository;
 use Illuminate\Support\Collection;
 
 class InternalGroupService
 {
-    public function create(array $data): InternalGroupRepository
+    public function create(array $data): TicketInternalGroupRepository
     {
-        $category = InternalGroup::query()->create($data);
+        $category = TicketInternalGroup::query()->create($data);
 
-        return new InternalGroupRepository($category);
+        return new TicketInternalGroupRepository($category);
     }
 
     /**
@@ -20,26 +20,26 @@ class InternalGroupService
      */
     public function insert(array $data): self
     {
-        InternalGroup::query()->insert($data);
+        TicketInternalGroup::query()->insert($data);
 
         return $this;
     }
 
-    public function getById($id): InternalGroupRepository
+    public function getById($id): TicketInternalGroupRepository
     {
-        $category = InternalGroup::query()->findOrFail($id);
+        $category = TicketInternalGroup::query()->findOrFail($id);
 
-        return new InternalGroupRepository($category);
+        return new TicketInternalGroupRepository($category);
     }
 
     /**
-     * @return Collection<InternalGroup>
+     * @return Collection<TicketInternalGroup>
      */
     public function all(): Collection
     {
-        $categories = InternalGroup::all();
+        $categories = TicketInternalGroup::all();
 
-        return $categories->map(fn ($c) => new InternalGroup((array) $c));
+        return $categories->map(fn ($c) => new TicketInternalGroup((array) $c));
     }
 
     public function delete($id): self
@@ -51,7 +51,7 @@ class InternalGroupService
 
     public function bulkDelete(array $ids): static
     {
-        InternalGroup::query()->whereIn('id', $ids)->delete();
+        TicketInternalGroup::query()->whereIn('id', $ids)->delete();
 
         return $this;
     }

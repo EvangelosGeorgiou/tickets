@@ -4,22 +4,23 @@ namespace EvanGeo\Ticket\Repository;
 
 use EvanGeo\Ticket\Concerns\HasAttachments;
 use EvanGeo\Ticket\Enums\ResponseMessageType;
-use EvanGeo\Ticket\Models\Response;
 use EvanGeo\Ticket\Models\Ticket;
+use EvanGeo\Ticket\Models\TicketResponse;
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int id
  * @property string message
  * @property ResponseMessageType type
  */
-class ResponseRepository extends Repository implements Arrayable
+class TicketResponseRepository extends Repository implements Arrayable
 {
     use HasAttachments;
 
-    protected Response $response;
+    protected TicketResponse|Model $response;
 
-    public function __construct(Ticket $ticket, Response $response)
+    public function __construct(Ticket $ticket, TicketResponse|Model $response)
     {
         parent::__construct($ticket);
         $this->response = $response;

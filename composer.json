@@ -2,21 +2,14 @@
     "name": "evangeo/tickets",
     "description": "Ticket Support System",
     "keywords": [
-        "evangeo/tickets",
+        "support-tickets",
         "laravel",
         "tickets"
     ],
-    "homepage": "https://github.com/epls-tickets/tickets",
+    "homepage": "https://github.com/EvangelosGeorgiou/tickets",
     "license": "MIT",
-    "authors": [
-        {
-            "name": "366-evangelos",
-            "email": "evangelos.g@gtgroup.io",
-            "role": "Developer"
-        }
-    ],
     "require": {
-        "php": "^8.1|^8.2",
+        "php": "^8.0",
         "spatie/laravel-package-tools": "^1.14.0",
         "ext-json": "*",
         "illuminate/contracts": "^8.0|^9.0|^10",

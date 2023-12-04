@@ -2,7 +2,7 @@
 
 namespace EvanGeo\Ticket\Repository;
 
-use EvanGeo\Ticket\Models\Category;
+use EvanGeo\Ticket\Models\TicketCategory;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,11 +11,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property string name
  * @property bool enabled
  */
-class CategoryRepository implements Arrayable
+class TicketCategoryRepository implements Arrayable
 {
-    private Category|Model $category;
+    private TicketCategory|Model $category;
 
-    public function __construct(Category|Model $category)
+    public function __construct(TicketCategory|Model $category)
     {
         $this->category = $category;
     }
@@ -25,7 +25,7 @@ class CategoryRepository implements Arrayable
         return $this->category->{$name};
     }
 
-    public function update(array $data): CategoryRepository
+    public function update(array $data): TicketCategoryRepository
     {
         $this->category->update($data);
 
@@ -34,7 +34,7 @@ class CategoryRepository implements Arrayable
         return $this;
     }
 
-    public function toggleEnabled(): CategoryRepository
+    public function toggleEnabled(): TicketCategoryRepository
     {
         $this->category->update(['enabled' => ! $this->category->enabled]);
 

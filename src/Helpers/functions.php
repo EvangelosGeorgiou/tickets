@@ -15,21 +15,21 @@ if (! function_exists('ticket')) {
     }
 }
 
-if (! function_exists('ticket_category')) {
+if (! function_exists('ticketCategory')) {
     /**
      * @throws BindingResolutionException
      */
-    function ticket_category(): CategoryService
+    function ticketCategory(): CategoryService
     {
         return app()->make(CategoryService::class);
     }
 }
 
-if (! function_exists('ticket_group')) {
+if (! function_exists('ticketGroup')) {
     /**
      * @throws BindingResolutionException
      */
-    function ticket_group(): InternalGroupService
+    function ticketGroup(): InternalGroupService
     {
         return app()->make(InternalGroupService::class);
     }

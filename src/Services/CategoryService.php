@@ -49,9 +49,16 @@ class CategoryService
         return $this;
     }
 
-    public function bulkDelete(array $ids): static
+    public function deleteMany(array $ids): static
     {
         TicketCategory::query()->whereIn('id', $ids)->delete();
+
+        return $this;
+    }
+
+    public function forceDelete(int $id): static
+    {
+        TicketCategory::query()->where('id', $id)->forceDelete();
 
         return $this;
     }

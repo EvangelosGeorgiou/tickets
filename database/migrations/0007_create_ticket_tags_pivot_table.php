@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTicketTagsPivotTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class CreateTicketTagsPivotTable extends Migration
     {
         Schema::create(config('ticket.ticket_tags_pivot', 'ticket_tags_pivot'), function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('ticket_id');
-            $table->unsignedInteger('tag_id');
+            $table->unsignedBigInteger('ticket_id');
+            $table->unsignedBigInteger('tag_id');
+
+            $table->foreign('ticket_id')->references('id')->on(config('ticket.tickets', 'tickets'))->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreign('tag_id')->references('id')->on(config('ticket.tags', 'ticket_tags'))->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
 
@@ -25,4 +28,4 @@ class CreateTicketTagsPivotTable extends Migration
     {
         Schema::dropIfExists(config('ticket.ticket_tags_pivot', 'ticket_tags_pivot'));
     }
-}
+};

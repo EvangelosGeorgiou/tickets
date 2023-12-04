@@ -2,12 +2,10 @@
 
 namespace EvanGeo\Ticket\Tests;
 
-use CreateTicketAttachmentsTable;
-use CreateTicketResponsesTable;
-use CreateTicketsTable;
 use EvanGeo\Ticket\TicketsServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Artisan;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
@@ -26,12 +24,9 @@ class TestCase extends Orchestra
     {
         config()->set('database.default', 'testing');
 
-        (new CreateTicketsTable())->up();
-        (new CreateTicketResponsesTable())->up();
-        (new CreateTicketAttachmentsTable())->up();
-        (new \CreateTicketCategoriesTable())->up();
-        (new \CreateTicketInternalGroupTable())->up();
-        (new \CreateTicketTagsTable())->up();
-        (new \CreateTicketTagsPivotTable())->up();
+        Artisan::call('migrate', [
+            '--database' => 'testing',
+            '--path' => '../../../../database/migrations',
+        ]);
     }
 }

@@ -39,7 +39,8 @@ php artisan vendor:publish --tag="tickets-config"
 |-----------------------|------------------------------------------|---------------------|
 | ID                    | `integer`                                | `NOT NULL`          |
 | UUID                  | `string`                                 | `NOT NULL`          |
-| subject               | `string`                                 | `NOT NULL`          |
+| title                 | `string`                                 | `NOT NULL`          |
+| description           | `string`                                 | `NOT NULL`          |
 | entity                | `string`                                 | `NOT NULL`          |
 | entity_id             | `int`                                    | `NOT NULL`          |
 | assigned_user         | `int`                                    | `NOT NULL`          |

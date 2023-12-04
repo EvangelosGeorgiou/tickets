@@ -16,7 +16,8 @@ use Illuminate\Support\Str;
 /**
  * @property int id
  * @property string uuid
- * @property string subject
+ * @property string title
+ * @property string description
  * @property string entity
  * @property int entity_id
  * @property int assigned_user
@@ -84,5 +85,10 @@ class Ticket extends Model
     public function internal_group(): HasOne
     {
         return $this->hasOne(TicketInternalGroup::class, 'id', 'internal_group_id');
+    }
+
+    public function attachments(): HasMany
+    {
+        return $this->hasMany(TicketAttachment::class, 'ticket_id', 'id');
     }
 }

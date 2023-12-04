@@ -49,9 +49,16 @@ class InternalGroupService
         return $this;
     }
 
-    public function bulkDelete(array $ids): static
+    public function deleteMany(array $ids): static
     {
         TicketInternalGroup::query()->whereIn('id', $ids)->delete();
+
+        return $this;
+    }
+
+    public function forceDelete(int $id): static
+    {
+        TicketInternalGroup::query()->where('id', $id)->forceDelete();
 
         return $this;
     }

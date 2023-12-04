@@ -71,7 +71,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "EvanGeo\\Ticket\\Providers\\TicketsServiceProvider"
+                "EvanGeo\\Ticket\\TicketsServiceProvider"
             ],
             "aliases": {
                 "Tickets": "EvanGeo\\Ticket\\Facades\\Tickets"

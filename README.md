@@ -15,7 +15,7 @@ The Laravel Ticket Support Backend Package is a specialized solution for managin
 You can install the package via composer:
 
 ```bash
-composer require evangeo/support-tickets
+composer require evangeo/tickets
 ```
 
 You can publish and run the migrations with:

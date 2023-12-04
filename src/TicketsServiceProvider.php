@@ -18,8 +18,14 @@ class TicketsServiceProvider extends PackageServiceProvider
         $package
             ->name('tickets')
             ->hasConfigFile('ticket')
-            ->hasViews()
-            ->hasMigration('create_tickets_table')
-            ->hasCommand(TicketsCommand::class);
+            ->hasMigrations('0001_0001_create_tickets_table',
+                '0001_0002_create_ticket_response_table',
+                '0001_0003_create_ticket_attachments_table',
+                '0001_0004_create_ticket_categories_table',
+                '0001_0005_create_ticket_internal_groups_table',
+                '0001_0006_create_ticket_tags_table',
+                '0001_0007_create_ticket_tags_pivot_table'
+            )
+        ->hasCommand(TicketsCommand::class);
     }
 }

@@ -24,14 +24,32 @@ class TicketTest extends TestCase
      */
     public function test_ticket()
     {
+        $uploads = [File::fake()->image('dummy.jpeg'), File::fake()->image('dummy2.jpeg')];
+        $attachments = [
+            [
+                'name' => 'dummy.jpeg',
+                'mime' => 'jpeg',
+            ],
+            [
+                'name' => 'dummy2.jpeg',
+                'mime' => 'jpeg',
+            ],
+        ];
+
         $ticket = ticket()->createAsUser(1, [
-            'subject' => $this->faker->sentence(3),
+            'title' => $this->faker->sentence(3),
+            'description' => $this->faker->sentence(3),
             'entity' => 'client',
             'entity_id' => 123,
-        ]);
+        ])->attachDocuments($attachments, function (TicketAttachmentRepository $attachment) use ($uploads) {
+            $attachment->upload($uploads, $this->faker->filePath());
+        });
+
+        $this->assertDatabaseCount(TicketAttachment::class, 2);
 
         $entityTicket = \ticket()->createAsEntity('client', [
-            'subject' => $this->faker->sentence(3),
+            'title' => $this->faker->sentence(3),
+            'description' => $this->faker->sentence(3),
             'entity' => 'client',
             'entity_id' => 123,
         ]);
@@ -55,7 +73,8 @@ class TicketTest extends TestCase
     public function test_ticket_responses()
     {
         $response = \ticket()->createAsUser(1, [
-            'subject' => $this->faker->sentence(3),
+            'title' => $this->faker->sentence(3),
+            'description' => $this->faker->sentence(3),
             'entity' => 'client',
             'entity_id' => 123,
         ])->replyAsUser(1, ['message' => $this->faker->sentence]);
@@ -93,7 +112,8 @@ class TicketTest extends TestCase
         $tags = Tags::factory()->count(3)->create();
 
         $ticket = \ticket()->createAsUser(1, [
-            'subject' => $this->faker->sentence(3),
+            'title' => $this->faker->sentence(3),
+            'description' => $this->faker->sentence(3),
             'entity' => 'client',
             'entity_id' => 123,
         ])->attachTags($tags->pluck('id')->toArray());
@@ -116,7 +136,8 @@ class TicketTest extends TestCase
     public function test_ticket_internal_group()
     {
         $ticket = \ticket()->createAsUser(1, [
-            'subject' => $this->faker->sentence(3),
+            'title' => $this->faker->sentence(3),
+            'description' => $this->faker->sentence(3),
             'entity' => 'client',
             'entity_id' => 123,
         ]);
@@ -144,7 +165,8 @@ class TicketTest extends TestCase
         $category = TicketCategory::factory()->create();
 
         $ticket = \ticket()->createAsUser(1, [
-            'subject' => $this->faker->sentence(3),
+            'title' => $this->faker->sentence(3),
+            'description' => $this->faker->sentence(3),
             'entity' => 'client',
             'entity_id' => 123,
         ])->setCategory($category->getKey());

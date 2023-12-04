@@ -2,19 +2,23 @@
 
 namespace EvanGeo\Ticket\Repository;
 
+use Closure;
 use EvanGeo\Ticket\Concerns\HasResponses;
 use EvanGeo\Ticket\Concerns\InteractWithTicket;
 use EvanGeo\Ticket\Concerns\TicketRelations;
 use EvanGeo\Ticket\Models\Ticket;
+use EvanGeo\Ticket\Models\TicketAttachment;
 use EvanGeo\Ticket\Models\TicketCategory;
 use EvanGeo\Ticket\Models\TicketInternalGroup;
 use EvanGeo\Ticket\Models\TicketResponse;
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Database\Eloquent\Collection;
 
 /**
  * @property int id
  * @property string uuid
- * @property string subject
+ * @property string title
+ * @property string description
  * @property string entity
  * @property int entity_id
  * @property int assigned_user
@@ -26,9 +30,10 @@ use Illuminate\Contracts\Support\Arrayable;
  * @property int closed_by
  * @property int created_by
  * @property int updated_by
- * @property \Illuminate\Database\Eloquent\Collection<TicketResponse> $responses
+ * @property Collection<TicketResponse> $responses
  * @property TicketCategory $category
  * @property TicketInternalGroup $internal_group
+ * @property Collection<TicketAttachment> $attachments
  */
 class TicketRepository implements Arrayable
 {
@@ -51,5 +56,16 @@ class TicketRepository implements Arrayable
     public function toArray(): array
     {
         return $this->ticket->toArray();
+    }
+
+    public function attachDocuments(array $documents, Closure $callback = null): self
+    {
+        $this->ticket->attachments()->createMany($documents);
+
+        if (is_callable($callback)) {
+            $callback(new TicketAttachmentRepository());
+        }
+
+        return $this;
     }
 }

@@ -2,7 +2,7 @@
 
 namespace EvanGeo\Ticket\Repository;
 
-use EvanGeo\Ticket\Concerns\HasAttachments;
+use EvanGeo\Ticket\Concerns\HasResponseAttachments;
 use EvanGeo\Ticket\Enums\ResponseMessageType;
 use EvanGeo\Ticket\Models\Ticket;
 use EvanGeo\Ticket\Models\TicketResponse;
@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class TicketResponseRepository extends Repository implements Arrayable
 {
-    use HasAttachments;
+    use HasResponseAttachments;
 
     protected TicketResponse|Model $response;
 

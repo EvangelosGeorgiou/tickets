@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 class TicketAttachmentRepository
 {
     /**
-     * @param  Collection<File>|File[]  $files
+     * @param Collection<File>|File[] $files
      */
     public function upload(array|Collection $files, string $path): self
     {
@@ -18,8 +18,8 @@ class TicketAttachmentRepository
         $path = Str::endsWith('/', $path) ? $path : "$path/";
 
         $files->whereInstanceOf(File::class)
-            ->each(fn (File $file) => Storage::disk(config('ticket.attachments.upload_disk'))
-                ->put($path.$file->getFilename(), $file->getContent()));
+            ->each(fn(File $file) => Storage::disk(config('ticket.attachments.upload_disk'))
+                ->put($path . $file->getFilename(), $file->getContent()));
 
         return $this;
     }

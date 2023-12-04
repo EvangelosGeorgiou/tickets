@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTicketsTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,8 @@ class CreateTicketsTable extends Migration
         Schema::create(config('ticket.table', 'tickets'), function (Blueprint $table) {
             $table->id();
             $table->uuid()->unique();
-            $table->string('subject');
+            $table->string('title');
+            $table->string('description');
             $table->enum('entity', config('ticket.entities'))->index();
             $table->integer('entity_id')->index();
             $table->unsignedInteger('assigned_user')->index()->nullable();
@@ -40,4 +41,4 @@ class CreateTicketsTable extends Migration
     {
         Schema::dropIfExists(config('ticket.table', 'tickets'));
     }
-}
+};

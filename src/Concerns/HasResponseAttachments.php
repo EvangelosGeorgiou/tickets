@@ -14,6 +14,7 @@ trait HasResponseAttachments
     {
         $documents = collect($documents)->map(function ($document) {
             $document['ticket_id'] = $this->getTicket()->id;
+
             return $document;
         })->toArray();
 

@@ -5,6 +5,7 @@ namespace EvanGeo\Ticket\Tests\Feature;
 use EvanGeo\Ticket\Enums\Priority;
 use EvanGeo\Ticket\Enums\ResponseMessageType;
 use EvanGeo\Ticket\Enums\Status;
+use EvanGeo\Ticket\Enums\WaitingResponseFrom;
 use EvanGeo\Ticket\Models\Tags;
 use EvanGeo\Ticket\Models\Ticket;
 use EvanGeo\Ticket\Models\TicketAttachment;
@@ -101,7 +102,7 @@ class TicketTest extends TestCase
         });
 
         $this->assertDatabaseCount(TicketAttachment::class, 2);
-
+        $this->assertEquals(WaitingResponseFrom::ENTITY->value, $response->getTicket()->waiting_response_from);
     }
 
     /**

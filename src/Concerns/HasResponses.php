@@ -12,15 +12,16 @@ trait HasResponses
     {
         $user = $user instanceof Model ? $user->getKey() : $user;
         $data['created_by'] = $user;
-        $data['waiting_response_from'] = WaitingResponseFrom::ENTITY;
 
-        return new TicketResponseRepository($this->ticket, $this->ticket->responses()->create($data));
+        $this->ticket->update(['waiting_response_from' => WaitingResponseFrom::ENTITY]);
+
+        return new TicketResponseRepository($this->ticket->refresh(), $this->ticket->responses()->create($data));
     }
 
     public function replyAsEntity(array $data): TicketResponseRepository
     {
-        $data['waiting_response_from'] = WaitingResponseFrom::USER;
+        $this->ticket->update(['waiting_response_from' => WaitingResponseFrom::USER]);
 
-        return new TicketResponseRepository($this->ticket, $this->ticket->responses()->create($data));
+        return new TicketResponseRepository($this->ticket->refresh(), $this->ticket->responses()->create($data));
     }
 }

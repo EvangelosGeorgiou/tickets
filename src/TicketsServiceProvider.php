@@ -26,6 +26,6 @@ class TicketsServiceProvider extends PackageServiceProvider
                 '0001_0006_create_ticket_tags_table',
                 '0001_0007_create_ticket_tags_pivot_table'
             )
-        ->hasCommand(TicketsCommand::class);
+            ->hasCommand(TicketsCommand::class);
     }
 }

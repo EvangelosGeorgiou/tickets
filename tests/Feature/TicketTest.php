@@ -15,7 +15,6 @@ use EvanGeo\Ticket\Repository\TicketAttachmentRepository;
 use EvanGeo\Ticket\Tests\TestCase;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\Testing\File;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 
 class TicketTest extends TestCase

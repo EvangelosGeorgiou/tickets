@@ -4,6 +4,7 @@ namespace EvanGeo\Ticket\Models;
 
 use EvanGeo\Ticket\Concerns\HasTimestamps;
 use EvanGeo\Ticket\Database\Factories\TicketFactory;
+use EvanGeo\Ticket\Repository\TicketRepository;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -90,5 +91,10 @@ class Ticket extends Model
     public function attachments(): HasMany
     {
         return $this->hasMany(TicketAttachment::class, 'ticket_id', 'id');
+    }
+
+    public function getRepository(): TicketRepository
+    {
+        return new TicketRepository($this);
     }
 }

@@ -54,5 +54,4 @@ class TicketCategoryRepository implements Arrayable
     {
         return $this->category->toArray();
     }
-
 }

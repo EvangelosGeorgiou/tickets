@@ -55,5 +55,4 @@ class TicketInternalGroupRepository implements Arrayable
     {
         return $this->group->toArray();
     }
-
 }

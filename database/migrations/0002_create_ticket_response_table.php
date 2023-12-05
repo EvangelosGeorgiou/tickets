@@ -13,13 +13,15 @@ return new class extends Migration
     {
         Schema::create(config('ticket.responses', 'ticket_responses'), function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('ticket_id')->index();
+            $table->unsignedBigInteger('ticket_id')->index();
             $table->mediumText('message');
             $table->enum('type', ['external', 'internal'])->default('external');
             $table->timestamp(config('ticket.timestamps.created', 'created_at'))->useCurrent();
             $table->integer('created_by')->nullable()->comment('if ticket is created by user then its the user_id otherwise is null');
             $table->timestamp(config('ticket.timestamps.updated', 'updated_at'))->nullable()->useCurrentOnUpdate();
             $table->integer('modified_by')->nullable()->comment('if ticket is updated by user then its the user_id otherwise is null');
+
+            $table->foreign('ticket_id')->references('id')->on(config('ticket.table', 'tickets'));
         });
     }
 

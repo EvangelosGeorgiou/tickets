@@ -4,6 +4,7 @@ namespace EvanGeo\Ticket\Services;
 
 use EvanGeo\Ticket\Models\TicketInternalGroup;
 use EvanGeo\Ticket\Repository\TicketInternalGroupRepository;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 
 class InternalGroupService
@@ -61,5 +62,10 @@ class InternalGroupService
         TicketInternalGroup::query()->where('id', $id)->forceDelete();
 
         return $this;
+    }
+
+    public function query(): Builder
+    {
+        return TicketInternalGroup::query();
     }
 }

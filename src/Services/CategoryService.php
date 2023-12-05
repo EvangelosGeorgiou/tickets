@@ -4,6 +4,7 @@ namespace EvanGeo\Ticket\Services;
 
 use EvanGeo\Ticket\Models\TicketCategory;
 use EvanGeo\Ticket\Repository\TicketCategoryRepository;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 
 class CategoryService
@@ -61,5 +62,10 @@ class CategoryService
         TicketCategory::query()->where('id', $id)->forceDelete();
 
         return $this;
+    }
+
+    public function query(): Builder
+    {
+        return TicketCategory::query();
     }
 }

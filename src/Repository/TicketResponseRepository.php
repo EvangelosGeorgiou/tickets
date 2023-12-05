@@ -7,7 +7,6 @@ use EvanGeo\Ticket\Enums\ResponseMessageType;
 use EvanGeo\Ticket\Models\Ticket;
 use EvanGeo\Ticket\Models\TicketResponse;
 use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -54,10 +53,5 @@ class TicketResponseRepository extends Repository implements Arrayable
     public function toArray(): array
     {
         return $this->response->toArray();
-    }
-
-    public function query(): Builder
-    {
-        return $this->response->query();
     }
 }

@@ -7,6 +7,7 @@ use EvanGeo\Ticket\Models\Ticket;
 use EvanGeo\Ticket\Repository\TicketRepository;
 use EvanGeo\Ticket\Services\CategoryService;
 use EvanGeo\Ticket\Services\InternalGroupService;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
@@ -84,5 +85,10 @@ class Tickets
         return Ticket::query()
             ->whereNotNull('created_by')
             ->get();
+    }
+
+    public function query(): Builder
+    {
+        return Ticket::query();
     }
 }

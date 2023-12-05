@@ -4,7 +4,6 @@ namespace EvanGeo\Ticket\Repository;
 
 use EvanGeo\Ticket\Models\TicketCategory;
 use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -54,10 +53,5 @@ class TicketCategoryRepository implements Arrayable
     public function toArray(): array
     {
         return $this->category->toArray();
-    }
-
-    public function query(): Builder
-    {
-        return $this->category->query();
     }
 }

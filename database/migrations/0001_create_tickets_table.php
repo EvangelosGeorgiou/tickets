@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('description');
             $table->enum('entity', config('ticket.entities'))->index();
             $table->integer('entity_id')->index();
-            $table->unsignedInteger('assigned_user')->index()->nullable();
-            $table->unsignedInteger('category_id')->index()->nullable();
-            $table->unsignedInteger('internal_group_id')->index()->nullable();
+            $table->unsignedBigInteger('assigned_user')->index()->nullable();
+            $table->unsignedBigInteger('category_id')->index()->nullable();
+            $table->unsignedBigInteger('internal_group_id')->index()->nullable();
             $table->enum('status', ['open', 're-open', 'closed', 'archived'])->default('open');
             $table->enum('waiting_response_from', ['user', 'entity']);
             $table->enum('priority', ['low', 'normal', 'high'])->index()->default('low');
@@ -31,6 +31,10 @@ return new class extends Migration
             $table->integer('modified_by')->nullable()->comment('if ticket is updated by user then its the user_id otherwise is null');
             $table->timestamp(config('ticket.timestamps.deleted', 'deleted_at'))->nullable()->useCurrentOnUpdate();
             $table->integer('deleted_by')->nullable()->comment('if ticket is deleted by user then its the user_id otherwise is null');
+
+            $table->foreign('assigned_user')->references('id')->on('users');
+            $table->foreign('category_id')->references('id')->on('ticket_categories');
+            $table->foreign('internal_group_id')->references('id')->on('ticket_internal_groups');
         });
     }
 

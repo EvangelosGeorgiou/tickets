@@ -12,7 +12,6 @@ use EvanGeo\Ticket\Models\TicketCategory;
 use EvanGeo\Ticket\Models\TicketInternalGroup;
 use EvanGeo\Ticket\Models\TicketResponse;
 use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 
 /**
@@ -68,10 +67,5 @@ class TicketRepository implements Arrayable
         }
 
         return $this;
-    }
-
-    public function query(): Builder
-    {
-        return $this->ticket->query();
     }
 }

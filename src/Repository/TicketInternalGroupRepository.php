@@ -4,7 +4,6 @@ namespace EvanGeo\Ticket\Repository;
 
 use EvanGeo\Ticket\Models\TicketInternalGroup;
 use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -57,8 +56,4 @@ class TicketInternalGroupRepository implements Arrayable
         return $this->group->toArray();
     }
 
-    public function query(): Builder
-    {
-        return $this->group->query();
-    }
 }

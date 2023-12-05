@@ -8,7 +8,6 @@ use EvanGeo\Ticket\Enums\ResponseMessageType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property int id
@@ -18,8 +17,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class TicketResponse extends Model
 {
     use HasFactory,
-        HasTimestamps,
-        SoftDeletes;
+        HasTimestamps;
 
     protected $guarded = ['id'];
 
@@ -30,11 +28,6 @@ class TicketResponse extends Model
     protected static function newFactory(): ResponseFactory
     {
         return ResponseFactory::new();
-    }
-
-    public function getDeletedAtColumn()
-    {
-        return config('ticket.timestamps.deleted', 'deleted_at');
     }
 
     public function getTable()
